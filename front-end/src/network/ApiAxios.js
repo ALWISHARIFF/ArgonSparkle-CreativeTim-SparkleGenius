@@ -7,9 +7,7 @@ import config from "../config";
 //     rejectUnauthorized: false,
 // });
 
-const instance = axios.create({
-  baseURL: config.WS_BASE_URL,
-});
+const instance = axios.create();
 const instance3 = axios.create({
   baseURL: config.CLOUDFLARE,
 });
