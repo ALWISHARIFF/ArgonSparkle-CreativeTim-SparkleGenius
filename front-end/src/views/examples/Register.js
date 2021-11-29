@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 // reactstrap components
 import {
@@ -51,15 +51,21 @@ const Register = () => {
     "Email sent! Check it to reset your password."
   );
   const [userID, setUserID] = useState(null);
+  useEffect(()=>{
+    let geo = JSON.parse(localStorage.getItem("geo"));
+    if(geo){
+      setShowToast(true)
+    }
+  },[localStorage])
   const locator = async () => {
     try {
       const locationResponse = await cloudflare();
       const { data } = locationResponse;
       console.log(data);
-      localStorage.setItem(JSON.stringify(data));
+      localStorage.setItem('geo',JSON.stringify(data));
       setCountry(data.country);
       setCity(data.city);
-      if(country&&city){
+      if(country&&city!==null){
         setToastMessage(
           `This is a demo, so we will send you an email. Instead, Check Your Mail:Country:${country} city:${city}`
         );
@@ -88,7 +94,7 @@ const Register = () => {
       }
       // const locationResponse = await cloudflare();
       // console.log(locationResponse);
-      locator();
+     
       const response = await register(name, email, password);
 
       // const { country, city } = locationResponse;
@@ -113,6 +119,7 @@ const Register = () => {
       //     `This is a demo, so we will not send you an email. Instead, click on this link to verify your account:`
       //   );
       // }
+      locator();
       setError("");
       setName("");
       setEmail("");
@@ -162,11 +169,8 @@ const Register = () => {
           </Toast.Header>
           <Toast.Body>
             {toastMessage}
-            {country&&city!==null ? (
-              <>
-                <a href={country}>{country}</a>
-              </>
-            ) : null}
+            {country}
+            {city}
           </Toast.Body>
         </Toast>
       </div>
