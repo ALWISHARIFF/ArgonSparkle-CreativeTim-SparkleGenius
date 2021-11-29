@@ -14,6 +14,7 @@ const instance3 = axios.create({
   baseURL: config.CLOUDFLARE,
 });
 instance3.defaults.headers.post["Access-Control-Allow-Headers"] = "*";
+instance.defaults.headers.post["Access-Control-Allow-Headers"] = "*";
 instance.interceptors.request.use(async (config) => {
   const token = localStorage.getItem("token");
   config.headers.authentication = token ? `Bearer ${token}` : "";
