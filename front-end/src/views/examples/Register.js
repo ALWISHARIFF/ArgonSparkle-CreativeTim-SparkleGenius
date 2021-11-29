@@ -56,6 +56,7 @@ const Register = () => {
       const locationResponse = await cloudflare();
       const { data } = locationResponse;
       console.log(data);
+      localStorage.setItem(JSON.stringify(data));
       setCountry(data.country);
       setCity(data.city);
       if(country&&city){
@@ -87,6 +88,7 @@ const Register = () => {
       }
       // const locationResponse = await cloudflare();
       // console.log(locationResponse);
+      locator();
       const response = await register(name, email, password);
 
       // const { country, city } = locationResponse;
@@ -117,10 +119,9 @@ const Register = () => {
       setPassword("");
       setConfirmPassword("");
       setCheckbox(false);
-      setCountry("");
-      setCity("");
+    
       setShowToast(true);
-      locator();
+      
     } catch (error) {
       setError(error.message);
     }
