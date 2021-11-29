@@ -39,8 +39,8 @@ import config from "../../config";
 const Register = () => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
+  const [country, setCountry] = useState(null);
+  const [city, setCity] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -162,9 +162,9 @@ const Register = () => {
           </Toast.Header>
           <Toast.Body>
             {toastMessage}
-            {url ? (
+            {country&&city!==null ? (
               <>
-                <a href={url}>{url}</a>
+                <a href={country}>{country}</a>
               </>
             ) : null}
           </Toast.Body>
