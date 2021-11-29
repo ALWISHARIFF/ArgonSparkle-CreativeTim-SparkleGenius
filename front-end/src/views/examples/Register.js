@@ -168,9 +168,9 @@ const Register = () => {
             />
           </Toast.Header>
           <Toast.Body>
-            {toastMessage}
-            {country}
-            {city}
+            {toastMessage}<br/>
+            Country: {country}
+            City: {city}
           </Toast.Body>
         </Toast>
       </div>
