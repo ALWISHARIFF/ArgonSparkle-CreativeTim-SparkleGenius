@@ -67,7 +67,7 @@ const Register = () => {
       setCity(data.city);
       if(country&&city!==null){
         setToastMessage(
-          `This is a demo, so we will send you an email. Instead, Check Your Mail:Country:${country} city:${city}`
+          `This is prod, so we will send you an email. Please, Check Your Mail`
         );
         setShowToast(true);
       }
