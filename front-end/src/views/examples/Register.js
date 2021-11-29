@@ -52,12 +52,12 @@ const Register = () => {
   );
   const [userID, setUserID] = useState(null);
   useEffect(() => {
-    setShowToast(false)
+    setShowToast(false);
     let geo = JSON.parse(localStorage.getItem("geo"));
     if (geo) {
       setShowToast(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage]);
   const locator = async () => {
     try {
@@ -134,49 +134,51 @@ const Register = () => {
 
   return (
     <>
-      <div
-        aria-live='polite'
-        aria-atomic='true'
-        style={{
-          position: "fixed",
-          minHeight: "100px",
-          width: "35%",
-          right: 10,
-          bottom: 80,
-          zIndex: 50,
-        }}>
-        <Toast
+      {country && city !== null ? (
+        <div
+          aria-live='polite'
+          aria-atomic='true'
           style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            backgroundColor: "white",
-            padding: 10,
-            borderRadius: 10,
-          }}
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={10000}
-          autohide={!config.DEMO}>
-          <Toast.Header>
-            <img
-              style={{ height: "30px", width: "100px" }}
-              src={require("../../assets/img/brand/argon-react.png").default}
-              alt='...'
-            />
-          </Toast.Header>
-          <Toast.Body>
-            {toastMessage}
-            <br />
-            {country && city ? (
-              <>
-                Country: {country} {"  "}
-                City: {city}
-              </>
-            ) : null}
-          </Toast.Body>
-        </Toast>
-      </div>
+            position: "fixed",
+            minHeight: "100px",
+            width: "35%",
+            right: 10,
+            bottom: 80,
+            zIndex: 50,
+          }}>
+          <Toast
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              backgroundColor: "white",
+              padding: 10,
+              borderRadius: 10,
+            }}
+            onClose={() => setShowToast(false)}
+            show={showToast}
+            delay={10000}
+            autohide={!config.DEMO}>
+            <Toast.Header>
+              <img
+                style={{ height: "30px", width: "100px" }}
+                src={require("../../assets/img/brand/argon-react.png").default}
+                alt='...'
+              />
+            </Toast.Header>
+            <Toast.Body>
+              {toastMessage}
+              <br />
+              {country && city !== null ? (
+                <>
+                  Country: {country} {"  "}
+                  City: {city}
+                </>
+              ) : null}
+            </Toast.Body>
+          </Toast>
+        </div>
+      ) : null}
       <Col lg='6' md='8'>
         <Card className='bg-secondary shadow border-0'>
           <CardHeader className='bg-transparent pb-5'>
